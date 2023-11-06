@@ -1,8 +1,7 @@
 package org.example;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 /**
  * The Car class represents specific information about an automobile.
@@ -10,10 +9,9 @@ import javax.validation.constraints.NotNull;
  * such as the number of doors and whether it is electric.
  */
 public class Car extends Transport {
-    @Min(value = 1, message = "Кількість дверей має бути більше 0")
-    @Max(value = 10, message = "Кількість дверей не має перевищувати 10")
+    @Min(value = 1, message = "The number of doors must be greater than 0")
+    @Max(value = 10, message = "The number of doors should not exceed 10")
     private final int numberOfDoors;
-    @NotNull(message = "Необхідно вказати, чи є автомобіль електричним")
     private final boolean isElectric;
 
     /**
@@ -49,10 +47,10 @@ public class Car extends Transport {
      * The Builder class for constructing a Car object with parameters.
      */
     public static class Builder extends Transport.Builder {
-        @Min(value = 1, message = "Кількість дверей має бути більше 0")
-        @Max(value = 10, message = "Кількість дверей не має перевищувати 10")
+        @Min(value = 1, message = "The number of doors must be greater than 0")
+        @Max(value = 10, message = "The number of doors should not exceed 10")
         private int numberOfDoors;
-        @NotNull(message = "Необхідно вказати, чи є автомобіль електричним")
+
         private boolean isElectric;
 
         /**
@@ -105,7 +103,15 @@ public class Car extends Transport {
          */
         @Override
         public Car build() {
+            String errors = validate(new Car(this));
+            if (errors.length() > 0) {
+                throw new IllegalArgumentException("Validation failed:" + System.lineSeparator() + errors);
+            }
             return new Car(this);
+        }
+
+        protected String validate(Car car) {
+            return super.validate(car);
         }
     }
 }

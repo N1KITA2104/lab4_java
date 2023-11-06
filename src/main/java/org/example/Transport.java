@@ -1,13 +1,17 @@
 package org.example;
 
-import javax.validation.constraints.*;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import jakarta.validation.constraints.*;
+
 import java.util.Objects;
+import java.util.Set;
 
 public class Transport {
-    @NotNull
     @NotBlank(message = "Brand must not be blank")
     private String brand;
-    @NotNull
     @NotBlank(message = "Model must not be blank")
     private String model;
     @Positive(message = "Weight must be positive")
@@ -154,10 +158,8 @@ public class Transport {
      * The Builder class for constructing a Transport object with parameters.
      */
     public static class Builder {
-        @NotNull
         @NotBlank(message = "Brand must not be blank")
         private String brand;
-        @NotNull
         @NotBlank(message = "Model must not be blank")
         private String model;
         @Positive(message = "Weight must be positive")
@@ -176,9 +178,6 @@ public class Transport {
          * @param weight The type of the transportation vehicle.
          */
         public Builder(String brand, String model, double weight) {
-            if (brand == null || model == null || weight <= 0) {
-                throw new IllegalArgumentException("Brand, model, and transportType must not be null.");
-            }
             this.brand = brand;
             this.model = model;
             this.weight = weight;
@@ -191,9 +190,6 @@ public class Transport {
          * @return The Builder object for method chaining.
          */
         public Builder setProductionYear(int productionYear) {
-            if (productionYear < 0) {
-                throw new IllegalArgumentException("Production year cannot be negative.");
-            }
             this.productionYear = productionYear;
             return this;
         }
@@ -205,9 +201,6 @@ public class Transport {
          * @return The Builder object for method chaining.
          */
         public Builder setPrice(double price) {
-            if (price < 0) {
-                throw new IllegalArgumentException("Price cannot be negative.");
-            }
             this.price = price;
             return this;
         }
@@ -218,7 +211,23 @@ public class Transport {
          * @return A new Transport object.
          */
         public Transport build() {
+            String errors = validate(new Transport(this));
+            if (errors.length() > 0) {
+                throw new IllegalArgumentException("Validation failed:" + System.lineSeparator() + errors);
+            }
             return new Transport(this);
+        }
+
+        protected String validate(Transport transport) {
+            ValidatorFactory validation = Validation.buildDefaultValidatorFactory();
+            Validator validator = validation.getValidator();
+            Set<ConstraintViolation<Transport>> errors = validator.validate(transport);
+            StringBuilder sb = new StringBuilder();
+
+            for (ConstraintViolation<Transport> violation : errors) {
+                sb.append(violation.getPropertyPath().toString()).append(": ").append(violation.getInvalidValue()).append(". ").append(violation.getMessage()).append(System.lineSeparator());
+            }
+            return sb.toString();
         }
     }
 }

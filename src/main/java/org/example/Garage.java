@@ -1,7 +1,8 @@
 package org.example;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
