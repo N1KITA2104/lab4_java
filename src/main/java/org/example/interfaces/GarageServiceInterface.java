@@ -1,4 +1,6 @@
-package org.example;
+package org.example.interfaces;
+
+import org.example.Car;
 
 import java.time.LocalDate;
 import java.util.List;

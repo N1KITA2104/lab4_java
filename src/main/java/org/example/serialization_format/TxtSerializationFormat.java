@@ -1,4 +1,7 @@
-package org.example;
+package org.example.serialization_format;
+
+import org.example.Transport;
+import org.example.interfaces.SerializationFormat;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,8 @@
-package org.example;
+package org.example.services;
+
+import org.example.Car;
+import org.example.Garage;
+import org.example.interfaces.GarageServiceInterface;
 
 import java.time.LocalDate;
 import java.util.*;

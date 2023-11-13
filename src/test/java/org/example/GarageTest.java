@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 
 public class GarageTest {
@@ -21,10 +20,12 @@ public class GarageTest {
     public void testAddCar() {
         // Create cars
         Car car1 = new Car.Builder("Toyota", "Camry", 2000)
+                .setProductionYear(2018)
                 .setNumberOfDoors(4)
                 .setElectric(false)
                 .build();
         Car car2 = new Car.Builder("Tesla", "Model S", 2022)
+                .setProductionYear(2023)
                 .setNumberOfDoors(4)
                 .setElectric(true)
                 .build();
@@ -41,7 +42,8 @@ public class GarageTest {
     @Test
     public void testRemoveCar() {
         // Create a car
-        Car car = new Car.Builder("Toyota", "Corolla", 2019)
+        Car car = new Car.Builder("Toyota", "Corolla", 2000)
+                .setProductionYear(2020)
                 .setNumberOfDoors(4)
                 .setElectric(false)
                 .build();

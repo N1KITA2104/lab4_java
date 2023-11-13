@@ -1,6 +1,7 @@
-package org.example;
+package org.example.serialization_format;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.example.interfaces.SerializationFormat;
 
 import java.io.File;
 import java.io.IOException;

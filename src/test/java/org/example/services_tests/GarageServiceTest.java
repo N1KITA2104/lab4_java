@@ -1,5 +1,9 @@
-package org.example;
+package org.example.services_tests;
 
+import org.example.Car;
+import org.example.Garage;
+import org.example.interfaces.GarageServiceInterface;
+import org.example.services.GarageService;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,18 +22,22 @@ public class GarageServiceTest {
 
         // Створення автомобілів і додавання їх в гараж
         Car car1 = new Car.Builder("Nissan", "GT-R", 2000)
+                .setNumberOfDoors(2)
                 .setProductionYear(2018)
                 .setPrice(95000)
                 .build();
         Car car2 = new Car.Builder("Nissan", "Skyline", 2200)
+                .setNumberOfDoors(2)
                 .setProductionYear(2018)
                 .setPrice(120000)
                 .build();
         Car car3 = new Car.Builder("Ferrari", "Spider", 1400)
+                .setNumberOfDoors(2)
                 .setProductionYear(2012)
                 .setPrice(235000)
                 .build();
         Car car4 = new Car.Builder("Lamborghini", "Aventador", 1800)
+                .setNumberOfDoors(2)
                 .setProductionYear(2023)
                 .setPrice(1350000)
                 .build();

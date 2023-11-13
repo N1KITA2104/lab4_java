@@ -1,5 +1,7 @@
-package org.example;
+package org.example.serialization_tests;
 
+import org.example.Transport;
+import org.example.serialization_format.JsonSerializationFormat;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

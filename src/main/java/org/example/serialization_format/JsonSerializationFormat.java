@@ -1,6 +1,7 @@
-package org.example;
+package org.example.serialization_format;
 
 import com.google.gson.*;
+import org.example.interfaces.SerializationFormat;
 
 import java.io.FileReader;
 import java.io.FileWriter;
