@@ -17,6 +17,7 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.9")
 
 //    implementation("javax.validation:validation-api:2.0.1.Final")
+    //Hello
     implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
     implementation("org.glassfish.expressly:expressly:5.0.0")
 
